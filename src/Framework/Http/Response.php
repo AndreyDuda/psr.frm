@@ -1,9 +1,11 @@
 <?php
-declare(strict_types=1);
 
 namespace Framework\Http;
 
-class Response
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
+
+class Response implements ResponseInterface
 {
     private $headers = [];
     private $body;
@@ -21,7 +23,7 @@ class Response
 
     public function __construct($body, $statusCode = 200)
     {
-        $this->body = $body;
+        $this->body = $body instanceof StreamInterface ? $body : new Stream($body);
         $this->statusCode = $statusCode;
     }
 
@@ -30,7 +32,7 @@ class Response
         return $this->body;
     }
 
-    public function withBody($body): void
+    public function withBody(StreamInterface $body): void
     {
         $this->body = $body;
     }
@@ -64,6 +66,7 @@ class Response
         return isset($this->headers[$header]);
     }
 
+
     public function getHeader($header)
     {
         return $this->hasHeader($header) ? $this->headers[$header] : null;
@@ -73,4 +76,11 @@ class Response
     {
         $this->headers[$header] = $value;
     }
+
+    public function getProtocolVersion(){}
+    public function withProtocolVersion($version){}
+    public function getHeaderLine($name){}
+    public function withAddedHeader($name, $value){}
+    public function withoutHeader($name){}
+
 }
