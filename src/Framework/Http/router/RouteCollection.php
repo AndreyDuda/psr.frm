@@ -7,13 +7,23 @@ class RouteCollection
 {
     private $routes = [];
 
-    public function get()
+    public function any(string $name, string $pattern, string $handler, array $tokens = []): void
     {
-
+        $this->routes = new Route($name, $pattern, $handler, [], $tokens);
     }
 
-    public function post()
+    public function get(string $name, string $pattern, string $handler, array $tokens = []): void
     {
+        $this->routes = new Route($name, $pattern, $handler, [], $tokens);
+    }
 
+    public function post(string $name, string $pattern, string $handler, array $tokens = []): void
+    {
+        $this->routes = new Route($name, $pattern, $handler, [], $tokens);
+    }
+
+    public function getRoutes(): array
+    {
+        return $this->routes;
     }
 }
