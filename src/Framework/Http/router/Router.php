@@ -16,7 +16,11 @@ class Router
 
     public function match(ServerRequestInterface $request)
     {
-        /*return new Result($name, $handlerm $attribute);*/
+        foreach ($this->routes->getRoutes() as $route) {
+            if ($route->meth) {
+
+            }
+        }
     }
 
     public function generate($name, array $params = []): string
