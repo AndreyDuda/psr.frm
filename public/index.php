@@ -47,7 +47,7 @@ try {
     $response = new JsonResponse(['error' => 'Undefined page'], 404);
 }
 
-$response = $response->witHaader('X-developer', 'Duda');
+$response = $response->withHeader('X-developer', 'Duda');
 
 $emitter = new SapiEmitter();
 $emitter->emit($response);

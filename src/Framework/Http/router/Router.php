@@ -20,7 +20,8 @@ class Router
     public function match(ServerRequestInterface $request)
     {
         foreach ($this->routes->getRoutes() as $route) {
-            if ($route->method
+
+            if ($route->methods
                 && !in_array(
                     $request->getMethod(),
                     $route->methods,
@@ -35,12 +36,12 @@ class Router
                 return '(?P<' . $argument . '>' . $replace . ')';
             }, $route->pattern);
 
-            $path = $request->getUrl()->getPath();
+            $path = $request->getUri()->getPath();
             if (preg_match('~^' . $pattern . '$~i', $path, $matches)) {
                 return new Result(
                     $route->name,
                     $route->handler,
-                    array_filter($route->attributes, 'is_string', ARRAY_FILTER_USE_KEY)
+                    array_filter($route->tokens, 'is_string', ARRAY_FILTER_USE_KEY)
                 );
             }
         }
