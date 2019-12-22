@@ -12,7 +12,7 @@ class RouteCollection
         $this->routes = new Route($name, $pattern, $handler, [], $tokens);
     }
 
-    public function get(string $name, string $pattern, string $handler, array $tokens = []): void
+    public function get(string $name, $pattern, $handler, array $tokens = []): void
     {
         $this->routes = new Route($name, $pattern, $handler, [], $tokens);
     }
@@ -22,7 +22,7 @@ class RouteCollection
         $this->routes = new Route($name, $pattern, $handler, [], $tokens);
     }
 
-    public function getRoutes(): array
+    public function getRoutes()
     {
         return $this->routes;
     }

@@ -11,7 +11,7 @@ class Route
     public $tokens;
     public $methods;
 
-    public function __construct(string $name, string $pattern, string $handler, array $tokens, array $methods)
+    public function __construct(string $name, string $pattern, $handler, array $tokens, array $methods)
     {
         $this->name = $name;
         $this->pattern = $pattern;
@@ -19,6 +19,4 @@ class Route
         $this->tokens = $tokens;
         $this->methods = $methods;
     }
-
-
 }

@@ -20,7 +20,12 @@ class Router
     public function match(ServerRequestInterface $request)
     {
         foreach ($this->routes->getRoutes() as $route) {
-            if ($route->method && !in_array($request->getMethod(), $route->methods, true)) {
+            if ($route->method
+                && !in_array(
+                    $request->getMethod(),
+                    $route->methods,
+                    true
+                )) {
                 continue;
             }
 
